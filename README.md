@@ -1,1 +1,1 @@
-Shell basics Readme
+tasks for sheel permissions
