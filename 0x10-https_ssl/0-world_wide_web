@@ -2,7 +2,7 @@
 #list ip of domain and subdomain
 subdomains=( "www" "lb-01" "web-01" "web-02" )
 print_info(){
-   INFO="$(dig "$1" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
+   INFO="$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
    IP=$(echo "$INFO" | awk '{print $5}')
    Record=$(echo "$INFO" | awk '{print $4}')
    echo -e "The subdomain $2 is a $Record record and points to $IP"
