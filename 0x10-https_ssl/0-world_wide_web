@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#list ip of domain and subdomain
+subdomains=( "www" "lb-01" "web-01" "web-02" )
+print_info(){
+   INFO="$(dig "$1" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
+   IP=$(echo "$INFO" | awk '{print $5}')
+   Record=$(echo "$INFO" | awk '{print $4}')
+   echo -e "The subdomain $2 is a $Record record and points to $IP"
+}
+if [ $# -eq 1 ]
+then
+    for subs in "${subdomains[@]}";
+    do
+    print_info "$1" "$subs"
+    done
+elif [ $# -eq 2 ]
+then
+    print_info "$1" "$2"
+fi
