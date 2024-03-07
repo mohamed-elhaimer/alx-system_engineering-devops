@@ -9,8 +9,8 @@ frontend haproxy_balancer
 
 backend myweb
     balance roundrobin
-    server 482080-web-01 100.24.244.23	:80 check
-    server 482080-web-02 54.197.206.243:80 check
+    server 482080-web-01 54.197.206.243	:8080 check
+    server 482080-web-02 18.235.243.79:8080 check
 "
 apt-get -y update
 apt-get -y upgrade
